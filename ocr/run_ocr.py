@@ -9,7 +9,8 @@
   6. 사람 검토 : review/corrections.json 의 수정(원본 대조 근거 포함)을 적용 → table.csv, document.md
 
 사용법 (저장소 루트에서):
-    .venv-ocr\\Scripts\\python.exe ocr\\run_ocr.py
+    .venv-ocr\\Scripts\\python.exe ocr\\run_ocr.py                    # → outputs/ocr/
+    python ocr/run_ocr.py --out outputs/ocr_colab                     # Colab 재현용(커밋된 결과를 덮어쓰지 않음)
 """
 from __future__ import annotations
 
@@ -122,6 +123,9 @@ def clean_label(s: str) -> str:
 
 # ---------------------------------------------------------------- 메인
 def main() -> None:
+    global OUT
+    if "--out" in sys.argv:  # 출력 폴더 지정(재현 실행 결과를 원래 결과와 비교하려고)
+        OUT = (ROOT / sys.argv[sys.argv.index("--out") + 1]).resolve()
     started = dt.datetime.now().astimezone()
     OUT.mkdir(parents=True, exist_ok=True)
     shutil.copy2(INPUT, OUT / "input_census-table.png")  # 입력 사본
@@ -364,6 +368,19 @@ def write_document(rows, header, foot, items, raw_checks, final_checks, flags, c
     (OUT / "document.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
+def where_running() -> str:
+    if "COLAB_RELEASE_TAG" in __import__("os").environ or "google.colab" in sys.modules:
+        return "Google Colab (CPU)"
+    return f"로컬 PC ({platform.system()}, CPU 전용)"
+
+
+def _ver(pkg: str) -> str:
+    try:
+        return version(pkg)
+    except Exception:
+        return "미설치"
+
+
 def write_manifest(started) -> None:
     import rapidocr, onnxruntime
     mdir = Path(rapidocr.__file__).parent / "models"
@@ -371,11 +388,11 @@ def write_manifest(started) -> None:
     manifest = {
         "assignment": "B. OCR로 표 이미지를 다시 쓰기 (Census Table 1 선택)",
         "run_started": started.isoformat(timespec="seconds"),
-        "command": ".venv-ocr\\Scripts\\python.exe ocr\\run_ocr.py",
+        "command": " ".join([Path(sys.executable).name, *sys.argv]).replace("\\", "/"),
         "source": SOURCE,
         "inputs": [{"file": "input/census-table.png", "sha256": hashlib.sha256(INPUT.read_bytes()).hexdigest(),
                     "made_by": "ocr/extract_table_image.py (원문 PDF → 200dpi 크롭)"}],
-        "execution_location": {"where": "로컬 PC (Windows, CPU 전용)", "os": platform.platform(),
+        "execution_location": {"where": where_running(), "os": platform.platform(),
                                "python": sys.version.split()[0]},
         "engine": {
             "runtime": "RapidOCR + ONNX Runtime (CPU)",
@@ -389,9 +406,10 @@ def write_manifest(started) -> None:
         "settings": {"params": {k: str(v.value if hasattr(v, "value") else v) for k, v in OCR_PARAMS.items()},
                      "score_review_threshold": SCORE_REVIEW, "preprocess": "없음(원본 200dpi 그대로)",
                      "layout": "세로 괘선 검출(열) + y-중심 군집(행, 허용오차 11px)"},
-        "packages": {p: version(p) for p in ("rapidocr", "onnxruntime", "opencv-python-headless", "numpy", "pymupdf",
+        "packages": {p: _ver(p) for p in ("rapidocr", "onnxruntime", "opencv-python-headless", "numpy", "pymupdf",
                                               "paddleocr", "paddlepaddle")},
-        "note_packages": "paddleocr·paddlepaddle은 설치됐으나 로컬에서 libpaddle DLL이 차단되어 실행에는 쓰지 않음",
+        "note_packages": "paddleocr·paddlepaddle은 이 스크립트 실행에 쓰지 않음(로컬은 DLL 차단, Colab은 paddleocr_colab.ipynb 4부에서 별도 실행)",
+        "output_dir": str(OUT.relative_to(ROOT)).replace("\\", "/"),
         "outputs": sorted(str(p.relative_to(ROOT)).replace("\\", "/") for p in OUT.rglob("*") if p.is_file()),
     }
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
