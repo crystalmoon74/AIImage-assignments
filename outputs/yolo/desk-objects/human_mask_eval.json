@@ -1,0 +1,58 @@
+{
+  "정답": "input/desk-objects_human-mask.png (사람이 칠한 마스크, CC0)",
+  "지표": "IoU = 교집합/합집합, 과분할 = 모델만 칠한 픽셀, 누락 = 사람만 칠한 픽셀",
+  "results": {
+    "0.25": {
+      "laptop": {
+        "gt_px": 574594,
+        "pred_px": 564730,
+        "iou": 0.89,
+        "over_px(모델만)": 28077,
+        "miss_px(사람만)": 37941,
+        "status": "탐지됨"
+      },
+      "cup": {
+        "gt_px": 104423,
+        "pred_px": 105052,
+        "iou": 0.975,
+        "over_px(모델만)": 1620,
+        "miss_px(사람만)": 991,
+        "status": "탐지됨"
+      },
+      "dining table": {
+        "gt_px": 159495,
+        "pred_px": 116215,
+        "iou": 0.722,
+        "over_px(모델만)": 622,
+        "miss_px(사람만)": 43902,
+        "status": "탐지됨"
+      }
+    },
+    "0.50": {
+      "laptop": {
+        "gt_px": 574594,
+        "pred_px": 564730,
+        "iou": 0.89,
+        "over_px(모델만)": 28077,
+        "miss_px(사람만)": 37941,
+        "status": "탐지됨"
+      },
+      "cup": {
+        "gt_px": 104423,
+        "pred_px": 105052,
+        "iou": 0.975,
+        "over_px(모델만)": 1620,
+        "miss_px(사람만)": 991,
+        "status": "탐지됨"
+      },
+      "dining table": {
+        "gt_px": 159495,
+        "pred_px": 0,
+        "iou": 0.0,
+        "over_px(모델만)": 0,
+        "miss_px(사람만)": 159495,
+        "status": "모델이 찾지 못함(미탐)"
+      }
+    }
+  }
+}

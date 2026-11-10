@@ -1,0 +1,10 @@
+# 과제 A (Python 3.12, CPU) — torch는 CPU 휠: --extra-index-url https://download.pytorch.org/whl/cpu
+ultralytics==8.4.208
+torch==2.15.0
+torchvision==0.29.2
+opencv-python==5.0.0.93
+numpy==2.5.4
+matplotlib==3.11.2
+nbformat==5.11.1
+nbconvert==7.17.2
+ipykernel==7.4.0

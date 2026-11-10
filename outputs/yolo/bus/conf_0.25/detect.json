@@ -1,0 +1,74 @@
+{
+  "task": "detect",
+  "model": "yolo26n.pt",
+  "conf": 0.25,
+  "imgsz": 640,
+  "image_size_wh": [
+    810,
+    1080
+  ],
+  "box_format": "xyxy, 원본 이미지 픽셀 좌표(좌상단 원점)",
+  "detections": [
+    {
+      "id": 0,
+      "class_id": 5,
+      "class_name": "bus",
+      "confidence": 0.8806,
+      "box_xyxy": [
+        0.0,
+        230.5,
+        803.2,
+        750.7
+      ]
+    },
+    {
+      "id": 1,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.872,
+      "box_xyxy": [
+        48.6,
+        397.7,
+        240.3,
+        902.4
+      ]
+    },
+    {
+      "id": 2,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8608,
+      "box_xyxy": [
+        222.9,
+        404.8,
+        345.5,
+        861.0
+      ]
+    },
+    {
+      "id": 3,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8462,
+      "box_xyxy": [
+        669.6,
+        394.5,
+        809.9,
+        879.4
+      ]
+    },
+    {
+      "id": 4,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.6562,
+      "box_xyxy": [
+        0.2,
+        553.0,
+        59.7,
+        871.3
+      ]
+    }
+  ],
+  "input": "input\\bus.jpg"
+}

@@ -1,0 +1,12 @@
+﻿area_name,level,gross_area_sq_mi,population,population_note,review_status
+"United States, with outlying possessions",total,3743306,101115487,,확인됨
+"United States, exclusive of outlying possessions",subtotal,3026789,91972266,,확인됨
+Outlying possessions,subtotal,716517,9143221,,확인됨
+Alaska,item,590884,64356,,확인됨
+Hawaii,item,6449,191909,,확인됨
+Porto Rico,item,3435,1118012,,확인됨
+Military and naval service abroad,item,,55608,,확인됨
+Philippine Islands,item,115026,7635426,1 Population in 1903,수정됨
+Panama Canal Zone,item,436,62810,2 Population in 1912,수정됨
+Guam (population estimated),item,210,9000,,확인됨
+Samoa (population estimated),item,77,6100,,확인됨

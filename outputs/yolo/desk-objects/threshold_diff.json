@@ -1,0 +1,17 @@
+{
+  "설명": "conf=0.25에서는 나왔지만 conf=0.5에서 사라진 후보(=점수가 0.25~0.5 사이). 오탐/정탐 여부는 원본 대조로 판단.",
+  "detect_dropped": [],
+  "segment_dropped": [
+    {
+      "id": 2,
+      "class_name": "dining table",
+      "confidence": 0.3679,
+      "box_xyxy": [
+        63.6,
+        567.8,
+        1197.7,
+        898.3
+      ]
+    }
+  ]
+}

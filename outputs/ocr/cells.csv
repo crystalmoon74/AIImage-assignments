@@ -1,0 +1,34 @@
+﻿row,area_name,column,ocr_raw,final_value,ocr_score,bbox_x1,bbox_y1,bbox_x2,bbox_y2,source_page,status,auto_flags
+0,"United States, with outlying possessions",area_name,"United States, with outlying possessions .","United States, with outlying possessions .",0.9803,122.0,120.0,560.0,144.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+0,"United States, with outlying possessions",gross_area_sq_mi,"3, 743, 306","3, 743, 306",0.9741,756.0,118.0,867.0,147.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+0,"United States, with outlying possessions",population,"101, 115, 487","101, 115, 487",0.9981,938.0,119.0,1067.0,147.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+1,"United States, exclusive of outlying possessions",area_name,"United States, exclusive of outlying possessions.","United States, exclusive of outlying possessions.",0.9899,55.0,162.0,580.0,191.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+1,"United States, exclusive of outlying possessions",gross_area_sq_mi,"3, 026, 789","3, 026, 789",0.9976,755.0,160.0,867.0,192.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+1,"United States, exclusive of outlying possessions",population,"91, 972, 266","91, 972, 266",0.9972,951.0,162.0,1069.0,193.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+2,Outlying possessions,area_name,Outlying possessions...,Outlying possessions...,0.9666,54.0,206.0,302.0,237.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+2,Outlying possessions,gross_area_sq_mi,"716, 517","716, 517",0.998,778.0,206.0,867.0,237.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+2,Outlying possessions,population,"9, 143, 221","9, 143, 221",0.9974,961.0,207.0,1069.0,238.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+3,Alaska,area_name,Alaska...,Alaska...,0.9303,96.0,249.0,198.0,279.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+3,Alaska,gross_area_sq_mi,"590, 884","590, 884",0.9674,779.0,250.0,868.0,280.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+3,Alaska,population,"64, 356","64, 356",0.9168,994.0,250.0,1069.0,281.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+4,Hawaii,area_name,Hawaii.,Hawaii.,0.9938,96.0,272.0,190.0,300.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+4,Hawaii,gross_area_sq_mi,"6, 449","6, 449",0.8078,800.0,271.0,869.0,305.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),OCR 점수 0.808 < 0.9
+4,Hawaii,population,"191, 909","191, 909",0.9688,983.0,274.0,1069.0,302.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+5,Porto Rico,area_name,Porto Rico.,Porto Rico.,0.9986,96.0,295.0,226.0,322.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+5,Porto Rico,gross_area_sq_mi,"3, 435","3, 435",0.9208,800.0,295.0,871.0,327.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+5,Porto Rico,population,"1, 118, 012","1, 118, 012",0.9987,961.0,297.0,1067.0,325.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+6,Military and naval service abroad,area_name,Military and naval service abroad.,Military and naval service abroad.,0.9838,97.0,318.0,459.0,345.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+6,Military and naval service abroad,gross_area_sq_mi,,,,,,,,PDF p.2 / 인쇄 p.22,값 없음(원본 점선),
+6,Military and naval service abroad,population,"55, 608","55, 608",0.9939,993.0,320.0,1067.0,346.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+7,Philippine Islands,area_name,Philippine Islands.,Philippine Islands.,0.9963,98.0,340.0,309.0,368.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+7,Philippine Islands,gross_area_sq_mi,"115, 026","115, 026",0.9877,778.0,339.0,867.0,369.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+7,Philippine Islands,population,"17, 635, 426","7, 635, 426",0.9958,951.0,342.0,1068.0,370.0,PDF p.2 / 인쇄 p.22,수정(원본 대조),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+8,Panama Canal Zone,area_name,Panama Canal Zone.,Panama Canal Zone.,0.9935,98.0,363.0,317.0,388.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+8,Panama Canal Zone,gross_area_sq_mi,436,436,0.9998,823.0,363.0,865.0,388.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+8,Panama Canal Zone,population,"262, 810","62, 810",0.949,981.0,362.0,1070.0,393.0,PDF p.2 / 인쇄 p.22,수정(원본 대조),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+9,Guam (population estimated),area_name,Guam (population estimated).,Guam (population estimated).,0.9762,96.0,383.0,411.0,415.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+9,Guam (population estimated),gross_area_sq_mi,210,210,0.9998,824.0,385.0,866.0,411.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+9,Guam (population estimated),population,"9, 000","9, 000",0.9805,1004.0,387.0,1067.0,414.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"
+10,Samoa (population estimated),area_name,Samoa (population estimated),Samoa (population estimated),0.9907,96.0,405.0,412.0,438.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+10,Samoa (population estimated),gross_area_sq_mi,77,77,0.9999,835.0,408.0,865.0,434.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),
+10,Samoa (population estimated),population,"6,100","6,100",0.9971,1003.0,407.0,1069.0,439.0,PDF p.2 / 인쇄 p.22,OCR 그대로(원본 대조 일치),"합계 검사 불일치(인구: 해외영토 = 하위 지역 합: 9,143,221 ≠ 19,343,221) — 이 열 전체 재확인"

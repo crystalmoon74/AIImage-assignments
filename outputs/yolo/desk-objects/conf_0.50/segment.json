@@ -1,0 +1,45 @@
+{
+  "task": "segment",
+  "model": "yolo26n-seg.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1200,
+    900
+  ],
+  "instances": [
+    {
+      "id": 0,
+      "class_id": 41,
+      "class_name": "cup",
+      "confidence": 0.8873,
+      "box_xyxy": [
+        627.0,
+        386.8,
+        867.6,
+        900.0
+      ],
+      "mask_area_px": 105052,
+      "box_area_px": 123480,
+      "mask_to_box_ratio": 0.851,
+      "mask_file": "masks/00_cup.png"
+    },
+    {
+      "id": 1,
+      "class_id": 63,
+      "class_name": "laptop",
+      "confidence": 0.6841,
+      "box_xyxy": [
+        47.9,
+        35.4,
+        1076.2,
+        857.9
+      ],
+      "mask_area_px": 564730,
+      "box_area_px": 845829,
+      "mask_to_box_ratio": 0.668,
+      "mask_file": "masks/01_laptop.png"
+    }
+  ],
+  "input": "input\\desk-objects.jpg"
+}

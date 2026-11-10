@@ -1,0 +1,9 @@
+# 과제 B (Python 3.12, CPU)
+rapidocr==3.10.0
+onnxruntime==1.31.1
+opencv-python-headless==5.0.0.93
+numpy==2.3.5
+pymupdf==2.1
+# 원본 PaddleOCR (이 PC에서는 DLL 차단으로 미실행, Colab 노트북에서 사용)
+paddleocr==3.7.0
+paddlepaddle==3.3.1

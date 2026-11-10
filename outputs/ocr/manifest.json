@@ -1,0 +1,87 @@
+{
+  "assignment": "B. OCR로 표 이미지를 다시 쓰기 (Census Table 1 선택)",
+  "run_started": "2026-11-10T15:33:13+09:00",
+  "command": ".venv-ocr\\Scripts\\python.exe ocr\\run_ocr.py",
+  "source": {
+    "title": "Thirteenth Census of the United States Taken in the Year 1910, Volume I: Population — Table 1",
+    "publisher": "U.S. Bureau of the Census (1913)",
+    "url": "https://www2.census.gov/library/publications/decennial/1910/volume-1/volume-1-p3.pdf",
+    "pdf_page": 2,
+    "printed_page": 22,
+    "crop_rect_pt": [
+      235,
+      283,
+      625,
+      463
+    ],
+    "dpi": 200,
+    "license": "미국 연방정부 발행물 — 퍼블릭 도메인"
+  },
+  "inputs": [
+    {
+      "file": "input/census-table.png",
+      "sha256": "25e58a222fcc72212c14491e00c42448c50a62f0fdbadc51de46bdae3070dd6e",
+      "made_by": "ocr/extract_table_image.py (원문 PDF → 200dpi 크롭)"
+    }
+  ],
+  "execution_location": {
+    "where": "로컬 PC (Windows, CPU 전용)",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.15"
+  },
+  "engine": {
+    "runtime": "RapidOCR + ONNX Runtime (CPU)",
+    "why_not_paddlepaddle_local": "이 PC의 Windows 스마트 앱 컨트롤이 paddlepaddle의 libpaddle DLL 로드를 차단(WinError 4551). 같은 PaddleOCR PP-OCR 가중치의 ONNX 변환본으로 로컬 실행. 원본 PaddleOCR은 ocr/paddleocr_colab.ipynb (Colab) 제공",
+    "det_model": "ch_PP-OCRv5_det_server (다국어 텍스트 검출)",
+    "cls_model": "PP-LCNet textline orientation (0°/180°)",
+    "rec_model": "en_PP-OCRv5_rec_mobile (영어 인식 가중치)",
+    "model_files_sha256_16": {
+      "ch_PP-OCRv5_det_server.onnx": "0f8846b1d4bba223",
+      "ch_ppocr_mobile_v2.0_cls_mobile.onnx": "e47acedf663230f8",
+      "en_PP-OCRv5_rec_mobile.onnx": "c3461add59bb4323",
+      "PP-OCRv6_det_small.onnx": "090f04abcd9d9a74",
+      "PP-OCRv6_rec_small.onnx": "6f327246b50388f3"
+    }
+  },
+  "settings": {
+    "params": {
+      "Det.ocr_version": "PP-OCRv5",
+      "Det.model_type": "server",
+      "Det.lang_type": "multi",
+      "Rec.ocr_version": "PP-OCRv5",
+      "Rec.model_type": "mobile",
+      "Rec.lang_type": "en",
+      "Global.use_cls": "True"
+    },
+    "score_review_threshold": 0.9,
+    "preprocess": "없음(원본 200dpi 그대로)",
+    "layout": "세로 괘선 검출(열) + y-중심 군집(행, 허용오차 11px)"
+  },
+  "packages": {
+    "rapidocr": "3.10.0",
+    "onnxruntime": "1.31.1",
+    "opencv-python-headless": "5.0.0.93",
+    "numpy": "2.3.5",
+    "pymupdf": "2.1",
+    "paddleocr": "3.7.0",
+    "paddlepaddle": "3.3.1"
+  },
+  "note_packages": "paddleocr·paddlepaddle은 설치됐으나 로컬에서 libpaddle DLL이 차단되어 실행에는 쓰지 않음",
+  "outputs": [
+    "outputs/ocr/cells.csv",
+    "outputs/ocr/document.md",
+    "outputs/ocr/input_census-table.png",
+    "outputs/ocr/manifest.json",
+    "outputs/ocr/ocr_regions.png",
+    "outputs/ocr/ocr_text.txt",
+    "outputs/ocr/ocr_text_coords.tsv",
+    "outputs/ocr/raw_ocr.json",
+    "outputs/ocr/review_evidence/ocr00.png",
+    "outputs/ocr/review_evidence/ocr29.png",
+    "outputs/ocr/review_evidence/ocr32.png",
+    "outputs/ocr/review_overlay.png",
+    "outputs/ocr/review_report.json",
+    "outputs/ocr/table.csv",
+    "outputs/ocr/table_raw.csv"
+  ]
+}

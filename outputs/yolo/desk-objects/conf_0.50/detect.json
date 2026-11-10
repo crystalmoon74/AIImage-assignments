@@ -1,0 +1,38 @@
+{
+  "task": "detect",
+  "model": "yolo26n.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1200,
+    900
+  ],
+  "box_format": "xyxy, 원본 이미지 픽셀 좌표(좌상단 원점)",
+  "detections": [
+    {
+      "id": 0,
+      "class_id": 41,
+      "class_name": "cup",
+      "confidence": 0.9318,
+      "box_xyxy": [
+        625.9,
+        389.6,
+        866.9,
+        899.7
+      ]
+    },
+    {
+      "id": 1,
+      "class_id": 63,
+      "class_name": "laptop",
+      "confidence": 0.7521,
+      "box_xyxy": [
+        26.0,
+        33.6,
+        1137.7,
+        821.1
+      ]
+    }
+  ],
+  "input": "input\\desk-objects.jpg"
+}
