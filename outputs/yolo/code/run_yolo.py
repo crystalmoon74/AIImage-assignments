@@ -39,6 +39,12 @@ SOURCES = {
     "desk-objects.jpg": {"source": "https://commons.wikimedia.org/wiki/File:Image-segmentation-example.jpg",
                          "license": "CC0 1.0 (MartinThoma, Wikimedia Commons)",
                          "note": "공개 가능한 두 번째 사진. 사람이 칠한 정답 마스크(Image-segmentation-example-segmented.png, CC0)가 있어 원본 대조에 사용"},
+    "a1-street-vehicles.jpg": {"source": "https://commons.wikimedia.org/wiki/File:Moscow_bicycle_parade_2025-05-17_(285).jpg",
+                               "license": "CC0 1.0 (Retired electrician, Wikimedia Commons), 1280px 축소본",
+                               "note": "테스트 이미지 — 작은 대상이 많아 임계값 차이 관찰용"},
+    "a2-delivery-ebike.jpg": {"source": "https://commons.wikimedia.org/wiki/File:Moscow_2025-08-10_bicycle_race,_Samokat_delivery_02.jpg",
+                              "license": "CC0 1.0 (Retired electrician, Wikimedia Commons), 1280px 축소본",
+                              "note": "테스트 이미지 — 전기자전거(bicycle/motorcycle 경계) 클래스 판단 관찰용"},
 }
 
 

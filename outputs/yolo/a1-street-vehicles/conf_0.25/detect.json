@@ -1,0 +1,158 @@
+{
+  "task": "detect",
+  "model": "yolo26n.pt",
+  "conf": 0.25,
+  "imgsz": 640,
+  "image_size_wh": [
+    1280,
+    853
+  ],
+  "box_format": "xyxy, 원본 이미지 픽셀 좌표(좌상단 원점)",
+  "detections": [
+    {
+      "id": 0,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.8762,
+      "box_xyxy": [
+        35.4,
+        183.9,
+        879.3,
+        574.1
+      ]
+    },
+    {
+      "id": 1,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7787,
+      "box_xyxy": [
+        955.7,
+        316.6,
+        1040.6,
+        577.6
+      ]
+    },
+    {
+      "id": 2,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.7085,
+      "box_xyxy": [
+        1044.5,
+        201.7,
+        1280.0,
+        561.7
+      ]
+    },
+    {
+      "id": 3,
+      "class_id": 3,
+      "class_name": "motorcycle",
+      "confidence": 0.6989,
+      "box_xyxy": [
+        704.9,
+        421.1,
+        957.4,
+        596.7
+      ]
+    },
+    {
+      "id": 4,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.5372,
+      "box_xyxy": [
+        94.7,
+        294.9,
+        131.3,
+        388.0
+      ]
+    },
+    {
+      "id": 5,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.4826,
+      "box_xyxy": [
+        1016.2,
+        319.7,
+        1064.8,
+        567.7
+      ]
+    },
+    {
+      "id": 6,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.473,
+      "box_xyxy": [
+        853.5,
+        302.6,
+        926.1,
+        439.9
+      ]
+    },
+    {
+      "id": 7,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.4676,
+      "box_xyxy": [
+        770.1,
+        317.3,
+        860.7,
+        537.7
+      ]
+    },
+    {
+      "id": 8,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.3424,
+      "box_xyxy": [
+        123.5,
+        322.1,
+        161.0,
+        376.6
+      ]
+    },
+    {
+      "id": 9,
+      "class_id": 9,
+      "class_name": "traffic light",
+      "confidence": 0.3295,
+      "box_xyxy": [
+        1105.1,
+        205.7,
+        1141.4,
+        296.9
+      ]
+    },
+    {
+      "id": 10,
+      "class_id": 26,
+      "class_name": "handbag",
+      "confidence": 0.327,
+      "box_xyxy": [
+        843.4,
+        401.6,
+        893.5,
+        454.8
+      ]
+    },
+    {
+      "id": 11,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.2606,
+      "box_xyxy": [
+        927.3,
+        256.8,
+        1076.5,
+        373.6
+      ]
+    }
+  ],
+  "input": "input\\test\\a1-street-vehicles.jpg"
+}

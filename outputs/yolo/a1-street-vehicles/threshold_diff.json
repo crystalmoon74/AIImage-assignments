@@ -1,0 +1,150 @@
+{
+  "설명": "conf=0.25에서는 나왔지만 conf=0.5에서 사라진 후보(=점수가 0.25~0.5 사이). 오탐/정탐 여부는 원본 대조로 판단.",
+  "detect_dropped": [
+    {
+      "id": 5,
+      "class_name": "person",
+      "confidence": 0.4826,
+      "box_xyxy": [
+        1016.2,
+        319.7,
+        1064.8,
+        567.7
+      ]
+    },
+    {
+      "id": 6,
+      "class_name": "person",
+      "confidence": 0.473,
+      "box_xyxy": [
+        853.5,
+        302.6,
+        926.1,
+        439.9
+      ]
+    },
+    {
+      "id": 7,
+      "class_name": "person",
+      "confidence": 0.4676,
+      "box_xyxy": [
+        770.1,
+        317.3,
+        860.7,
+        537.7
+      ]
+    },
+    {
+      "id": 8,
+      "class_name": "person",
+      "confidence": 0.3424,
+      "box_xyxy": [
+        123.5,
+        322.1,
+        161.0,
+        376.6
+      ]
+    },
+    {
+      "id": 9,
+      "class_name": "traffic light",
+      "confidence": 0.3295,
+      "box_xyxy": [
+        1105.1,
+        205.7,
+        1141.4,
+        296.9
+      ]
+    },
+    {
+      "id": 10,
+      "class_name": "handbag",
+      "confidence": 0.327,
+      "box_xyxy": [
+        843.4,
+        401.6,
+        893.5,
+        454.8
+      ]
+    },
+    {
+      "id": 11,
+      "class_name": "truck",
+      "confidence": 0.2606,
+      "box_xyxy": [
+        927.3,
+        256.8,
+        1076.5,
+        373.6
+      ]
+    }
+  ],
+  "segment_dropped": [
+    {
+      "id": 6,
+      "class_name": "person",
+      "confidence": 0.4044,
+      "box_xyxy": [
+        126.6,
+        322.1,
+        161.1,
+        382.2
+      ]
+    },
+    {
+      "id": 7,
+      "class_name": "person",
+      "confidence": 0.4034,
+      "box_xyxy": [
+        1004.8,
+        315.1,
+        1064.6,
+        570.5
+      ]
+    },
+    {
+      "id": 8,
+      "class_name": "car",
+      "confidence": 0.3686,
+      "box_xyxy": [
+        851.1,
+        303.7,
+        930.4,
+        437.8
+      ]
+    },
+    {
+      "id": 9,
+      "class_name": "traffic light",
+      "confidence": 0.336,
+      "box_xyxy": [
+        1103.9,
+        205.4,
+        1139.5,
+        297.6
+      ]
+    },
+    {
+      "id": 10,
+      "class_name": "person",
+      "confidence": 0.2977,
+      "box_xyxy": [
+        852.1,
+        304.2,
+        930.5,
+        439.7
+      ]
+    },
+    {
+      "id": 11,
+      "class_name": "truck",
+      "confidence": 0.2974,
+      "box_xyxy": [
+        937.7,
+        256.1,
+        1075.7,
+        386.0
+      ]
+    }
+  ]
+}

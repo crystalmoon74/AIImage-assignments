@@ -194,6 +194,37 @@ OCR은 42개 글자 영역을 찾았고, 표 11행 × 3열로 조립했습니다
 
 ---
 
+## 추가 테스트 이미지 (A 2장 · B 2장) — `input/test/`
+
+| 과제 | 파일 | 출처 · 공유 조건 | 왜 골랐나 |
+|---|---|---|---|
+| A | `a1-street-vehicles.jpg` | [Moscow bicycle parade 2025-05-17 (285)](https://commons.wikimedia.org/wiki/File:Moscow_bicycle_parade_2025-05-17_(285).jpg), Retired electrician, **CC0 1.0** (1280px 축소) | 승합차·사람·배달 자전거·신호등 등 작은 대상이 많아 **임계값 차이**가 크게 드러남 |
+| A | `a2-delivery-ebike.jpg` | [Samokat delivery 02](https://commons.wikimedia.org/wiki/File:Moscow_2025-08-10_bicycle_race,_Samokat_delivery_02.jpg), Retired electrician, **CC0 1.0** (1280px 축소) | 전기 배달자전거가 bicycle/motorcycle 중 무엇으로 나오는지 **클래스 판단**을 원본과 대조 |
+| B | `b1-fraser-table.png` | 교재의 두 번째 표 **FRASER No. 11** — [1935 연준 연차보고서](https://fraser.stlouisfed.org/files/docs/publications/arfr/1930s/arfr_1935.pdf) PDF 98쪽/인쇄 91쪽, 200dpi, 퍼블릭 도메인 | 다단 열 제목, 작은 숫자, 값이 빈 칸(점선) |
+| B | `b2-census-world-table.png` | Census 1910 Vol. I PDF 2쪽(인쇄 22쪽) 하단 세계 비교표, 200dpi, 퍼블릭 도메인 | 큰 숫자의 쉼표·0이 촘촘하고 각주 기호 `(³)`·위첨자가 섞임 |
+
+실행:
+
+```bash
+.venv-yolo\Scripts\python.exe yolo\run_yolo.py input\bus.jpg input\desk-objects.jpg input\test\a1-street-vehicles.jpg input\test\a2-delivery-ebike.jpg
+```
+
+```bash
+.venv-ocr\Scripts\python.exe ocr\ocr_quick.py input\test\b1-fraser-table.png input\test\b2-census-world-table.png
+```
+
+`ocr_quick.py` 는 같은 OCR 설정으로 **원시 결과·영역 시각화·줄 단위 텍스트와 '확인 필요' 후보만** 저장합니다(`outputs/ocr_test/`). 표 복원과 사람 검토는 Table 1에서만 했습니다.
+
+**첫 실행에서 관찰한 것 (원본과 대조하기 전 1차 결과):**
+
+- **a1:** conf 0.25에서 truck 3 · person 6 · motorcycle 1 · traffic light 1 · handbag 1이 나왔습니다. conf 0.50에서는 truck 2 · person 2 · motorcycle 1만 남았습니다.
+  - 배달 자전거 옆에 선 **하늘색 옷의 사람(0.47)이 0.50에서 사라졌습니다.** 실제 사람을 놓친 미탐입니다.
+  - 승합차는 COCO에 van 클래스가 없어 `truck` 으로 나옵니다.
+  - 승합차 창 안의 주황 조끼 작업자들은 두 임계값 모두에서 찾지 못했습니다.
+- **a2:** 전기 배달자전거는 두 모델 모두 `motorcycle`(0.78 / 0.82)로 판단했습니다. 두 임계값의 결과가 같았습니다.
+- **b1 FRASER:** 351개 영역 중 108개가 확인 필요 후보입니다. 열 제목 `91 days to 6 months` 가 `9.07` 으로 읽히는 등 작은 숫자의 점수가 낮습니다.
+- **b2 세계표:** 105개 영역 중 25개가 확인 필요 후보입니다. `443,520,000` → `443,520,00`, `4,892,000` → `4,89200` 처럼 **끝자리 0·쉼표 누락**이 반복됩니다. Table 1에서는 없던 유형입니다.
+
 ## 처음 예상과 실제 결과
 
 | | 처음 예상 | 실제 |

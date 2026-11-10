@@ -1,0 +1,45 @@
+{
+  "task": "segment",
+  "model": "yolo26n-seg.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1280,
+    853
+  ],
+  "instances": [
+    {
+      "id": 0,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8803,
+      "box_xyxy": [
+        439.3,
+        117.9,
+        731.3,
+        664.3
+      ],
+      "mask_area_px": 79126,
+      "box_area_px": 159585,
+      "mask_to_box_ratio": 0.496,
+      "mask_file": "masks/00_person.png"
+    },
+    {
+      "id": 1,
+      "class_id": 3,
+      "class_name": "motorcycle",
+      "confidence": 0.8173,
+      "box_xyxy": [
+        291.3,
+        353.7,
+        878.6,
+        796.8
+      ],
+      "mask_area_px": 134699,
+      "box_area_px": 260258,
+      "mask_to_box_ratio": 0.518,
+      "mask_file": "masks/01_motorcycle.png"
+    }
+  ],
+  "input": "input\\test\\a2-delivery-ebike.jpg"
+}

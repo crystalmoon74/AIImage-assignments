@@ -1,0 +1,74 @@
+{
+  "task": "detect",
+  "model": "yolo26n.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1280,
+    853
+  ],
+  "box_format": "xyxy, 원본 이미지 픽셀 좌표(좌상단 원점)",
+  "detections": [
+    {
+      "id": 0,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.8762,
+      "box_xyxy": [
+        35.4,
+        183.9,
+        879.3,
+        574.1
+      ]
+    },
+    {
+      "id": 1,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7787,
+      "box_xyxy": [
+        955.7,
+        316.6,
+        1040.6,
+        577.6
+      ]
+    },
+    {
+      "id": 2,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.7085,
+      "box_xyxy": [
+        1044.5,
+        201.7,
+        1280.0,
+        561.7
+      ]
+    },
+    {
+      "id": 3,
+      "class_id": 3,
+      "class_name": "motorcycle",
+      "confidence": 0.6989,
+      "box_xyxy": [
+        704.9,
+        421.1,
+        957.4,
+        596.7
+      ]
+    },
+    {
+      "id": 4,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.5372,
+      "box_xyxy": [
+        94.7,
+        294.9,
+        131.3,
+        388.0
+      ]
+    }
+  ],
+  "input": "input\\test\\a1-street-vehicles.jpg"
+}

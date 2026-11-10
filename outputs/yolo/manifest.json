@@ -1,7 +1,7 @@
 {
   "assignment": "A. YOLO 서비스 만들기",
-  "run_started": "2026-11-10T15:34:37+09:00",
-  "command": "python.exe yolo/run_yolo.py",
+  "run_started": "2026-11-10T15:46:26+09:00",
+  "command": "python.exe yolo/run_yolo.py input/bus.jpg input/desk-objects.jpg input/test/a1-street-vehicles.jpg input/test/a2-delivery-ebike.jpg",
   "execution_location": {
     "where": "로컬 PC (Windows, CPU 전용)",
     "hostname_hash": "c72e0fb34831",
@@ -55,6 +55,20 @@
       "source": "https://commons.wikimedia.org/wiki/File:Image-segmentation-example.jpg",
       "license": "CC0 1.0 (MartinThoma, Wikimedia Commons)",
       "note": "공개 가능한 두 번째 사진. 사람이 칠한 정답 마스크(Image-segmentation-example-segmented.png, CC0)가 있어 원본 대조에 사용"
+    },
+    {
+      "file": "input\\test\\a1-street-vehicles.jpg",
+      "sha256": "6616182fb5d35fec6df0f45115564c0918b77e6b773ff93b5e984dfe445fd803",
+      "source": "https://commons.wikimedia.org/wiki/File:Moscow_bicycle_parade_2025-05-17_(285).jpg",
+      "license": "CC0 1.0 (Retired electrician, Wikimedia Commons), 1280px 축소본",
+      "note": "테스트 이미지 — 작은 대상이 많아 임계값 차이 관찰용"
+    },
+    {
+      "file": "input\\test\\a2-delivery-ebike.jpg",
+      "sha256": "a087a4a0e6929f34602dc6eeaa18632077052ee29e23dbdcc274492ca8ac3be4",
+      "source": "https://commons.wikimedia.org/wiki/File:Moscow_2025-08-10_bicycle_race,_Samokat_delivery_02.jpg",
+      "license": "CC0 1.0 (Retired electrician, Wikimedia Commons), 1280px 축소본",
+      "note": "테스트 이미지 — 전기자전거(bicycle/motorcycle 경계) 클래스 판단 관찰용"
     }
   ],
   "results_summary": [
@@ -115,6 +129,72 @@
       "threshold_diff": {
         "detect_dropped": 0,
         "segment_dropped": 1
+      }
+    },
+    {
+      "input": "input\\test\\a1-street-vehicles.jpg",
+      "by_conf": {
+        "0.25": {
+          "detect_counts": {
+            "truck": 3,
+            "person": 6,
+            "motorcycle": 1,
+            "traffic light": 1,
+            "handbag": 1
+          },
+          "segment_counts": {
+            "truck": 3,
+            "person": 6,
+            "motorcycle": 1,
+            "car": 1,
+            "traffic light": 1
+          }
+        },
+        "0.50": {
+          "detect_counts": {
+            "truck": 2,
+            "person": 2,
+            "motorcycle": 1
+          },
+          "segment_counts": {
+            "truck": 2,
+            "person": 3,
+            "motorcycle": 1
+          }
+        }
+      },
+      "threshold_diff": {
+        "detect_dropped": 7,
+        "segment_dropped": 6
+      }
+    },
+    {
+      "input": "input\\test\\a2-delivery-ebike.jpg",
+      "by_conf": {
+        "0.25": {
+          "detect_counts": {
+            "person": 1,
+            "motorcycle": 1
+          },
+          "segment_counts": {
+            "person": 1,
+            "motorcycle": 1
+          }
+        },
+        "0.50": {
+          "detect_counts": {
+            "person": 1,
+            "motorcycle": 1
+          },
+          "segment_counts": {
+            "person": 1,
+            "motorcycle": 1
+          }
+        }
+      },
+      "threshold_diff": {
+        "detect_dropped": 0,
+        "segment_dropped": 0
       }
     }
   ]

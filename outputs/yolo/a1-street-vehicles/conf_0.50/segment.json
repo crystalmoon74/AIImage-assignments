@@ -1,0 +1,109 @@
+{
+  "task": "segment",
+  "model": "yolo26n-seg.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1280,
+    853
+  ],
+  "instances": [
+    {
+      "id": 0,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.8932,
+      "box_xyxy": [
+        32.9,
+        185.6,
+        871.9,
+        573.7
+      ],
+      "mask_area_px": 221018,
+      "box_area_px": 325572,
+      "mask_to_box_ratio": 0.679,
+      "mask_file": "masks/00_truck.png"
+    },
+    {
+      "id": 1,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7412,
+      "box_xyxy": [
+        949.7,
+        316.3,
+        1061.4,
+        576.4
+      ],
+      "mask_area_px": 16092,
+      "box_area_px": 29046,
+      "mask_to_box_ratio": 0.554,
+      "mask_file": "masks/01_person.png"
+    },
+    {
+      "id": 2,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.69,
+      "box_xyxy": [
+        778.8,
+        316.5,
+        864.9,
+        552.5
+      ],
+      "mask_area_px": 10436,
+      "box_area_px": 20319,
+      "mask_to_box_ratio": 0.514,
+      "mask_file": "masks/02_person.png"
+    },
+    {
+      "id": 3,
+      "class_id": 3,
+      "class_name": "motorcycle",
+      "confidence": 0.637,
+      "box_xyxy": [
+        699.8,
+        432.9,
+        957.9,
+        595.7
+      ],
+      "mask_area_px": 18828,
+      "box_area_px": 42039,
+      "mask_to_box_ratio": 0.448,
+      "mask_file": "masks/03_motorcycle.png"
+    },
+    {
+      "id": 4,
+      "class_id": 7,
+      "class_name": "truck",
+      "confidence": 0.5774,
+      "box_xyxy": [
+        1044.1,
+        204.6,
+        1279.3,
+        564.3
+      ],
+      "mask_area_px": 56424,
+      "box_area_px": 84579,
+      "mask_to_box_ratio": 0.667,
+      "mask_file": "masks/04_truck.png"
+    },
+    {
+      "id": 5,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.5245,
+      "box_xyxy": [
+        94.1,
+        297.7,
+        131.5,
+        389.5
+      ],
+      "mask_area_px": 2430,
+      "box_area_px": 3433,
+      "mask_to_box_ratio": 0.708,
+      "mask_file": "masks/05_person.png"
+    }
+  ],
+  "input": "input\\test\\a1-street-vehicles.jpg"
+}

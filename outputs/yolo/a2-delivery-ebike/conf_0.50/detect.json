@@ -1,0 +1,38 @@
+{
+  "task": "detect",
+  "model": "yolo26n.pt",
+  "conf": 0.5,
+  "imgsz": 640,
+  "image_size_wh": [
+    1280,
+    853
+  ],
+  "box_format": "xyxy, 원본 이미지 픽셀 좌표(좌상단 원점)",
+  "detections": [
+    {
+      "id": 0,
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.892,
+      "box_xyxy": [
+        441.0,
+        114.9,
+        735.1,
+        650.1
+      ]
+    },
+    {
+      "id": 1,
+      "class_id": 3,
+      "class_name": "motorcycle",
+      "confidence": 0.7774,
+      "box_xyxy": [
+        291.3,
+        356.2,
+        879.8,
+        795.6
+      ]
+    }
+  ],
+  "input": "input\\test\\a2-delivery-ebike.jpg"
+}
