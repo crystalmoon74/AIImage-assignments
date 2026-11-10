@@ -48,6 +48,8 @@ uv pip install --python .venv-ocr/Scripts/python.exe -r requirements-ocr.txt
 
 가중치(`yolo26n.pt`, `yolo26n-seg.pt`)는 첫 실행 때 `models/` 로 자동 다운로드됩니다(저장소에는 넣지 않음).
 
+> **수정 기록(웹 화면 업로드 버그):** 처음 버전은 업로드한 사진을 `upload.img` 로 저장했습니다. Ultralytics는 **확장자로 이미지 여부를 판단**하므로 `No images or videos found` 오류가 났고, 서버가 응답 없이 끝나 화면에 결과가 나오지 않았습니다. 예제 버튼은 원래 `.jpg` 경로를 써서 정상 동작했기 때문에 처음 테스트에서는 이 문제가 드러나지 않았습니다. 이제는 업로드 바이트를 디코딩해 `.jpg` 로 저장하고, 이미지가 아닌 파일이나 실행 오류는 화면 상태 표시줄에 메시지로 보여 줍니다.
+
 ### A-2. 설정과 선택 이유
 
 | 설정 | 값 | 이유 |

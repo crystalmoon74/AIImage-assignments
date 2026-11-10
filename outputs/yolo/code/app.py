@@ -13,10 +13,13 @@ import base64
 import json
 import sys
 import tempfile
+import traceback
+import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 import yolo_core as yc  # noqa: E402
@@ -56,16 +59,19 @@ conf.oninput=()=>document.getElementById('cv').textContent=(+conf.value).toFixed
 conf.onchange=run;
 document.getElementById('file').onchange=e=>{const r=new FileReader();
   r.onload=()=>{imgB64=r.result.split(',')[1];example=null;document.getElementById('orig').src=r.result;run();};
-  r.readAsDataURL(e.target.files[0]);};
+  r.readAsDataURL(e.target.files[0]); e.target.value='';};  // 같은 파일을 다시 골라도 실행되도록
 // URL 파라미터로 바로 실행: /?example=bus.jpg&conf=0.5 (화면 캡처 재현용)
 window.onload=()=>{const q=new URLSearchParams(location.search);
   if(q.get('conf')){conf.value=q.get('conf');conf.oninput();}
   if(q.get('example'))useExample(q.get('example'));};
 function useExample(n){example=n;imgB64=null;document.getElementById('orig').src='/example/'+n;run();}
 async function run(){ if(!imgB64&&!example)return; document.getElementById('status').textContent='실행 중...';
-  const res=await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({image:imgB64,example:example,conf:+conf.value})});
-  const j=await res.json(); if(j.error){document.getElementById('status').textContent=j.error;return;}
+  let j;
+  try{ const res=await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},
+         body:JSON.stringify({image:imgB64,example:example,conf:+conf.value})});
+       j=await res.json(); }
+  catch(e){ document.getElementById('status').textContent='서버 응답 오류: '+e; return; }
+  if(j.error){document.getElementById('status').textContent=j.error;return;}
   document.getElementById('det').src='data:image/jpeg;base64,'+j.det;
   document.getElementById('seg').src='data:image/jpeg;base64,'+j.seg;
   document.getElementById('json').textContent=JSON.stringify(j.result,null,1);
@@ -116,12 +122,28 @@ class Handler(BaseHTTPRequestHandler):
         if req.get("example") in ("bus.jpg", "desk-objects.jpg"):
             path = yc.ROOT / "input" / req["example"]
         elif req.get("image"):
-            path = TMP / "upload.img"
-            path.write_bytes(base64.b64decode(req["image"]))
+            # 업로드 바이트를 디코딩해 .jpg로 저장한다. Ultralytics는 확장자로 이미지 여부를 판단하므로
+            # 확장자 없는/엉뚱한 이름(예: upload.img)으로 저장하면 "No images found" 오류가 난다.
+            arr = np.frombuffer(base64.b64decode(req["image"]), np.uint8)
+            img = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+            if img is None:
+                return self._send_json({"error": "이미지 파일로 읽을 수 없습니다 (jpg/png/bmp/webp 지원)."})
+            path = TMP / f"upload_{uuid.uuid4().hex}.jpg"
+            cv2.imwrite(str(path), img)
         else:
-            return self._send(400, b'{"error":"no image"}', "application/json")
-        out = predict(path, conf)
-        self._send(200, json.dumps(out, ensure_ascii=False).encode(), "application/json; charset=utf-8")
+            return self._send_json({"error": "이미지가 없습니다."}, 400)
+        try:
+            out = predict(path, conf)
+        except Exception as e:  # 오류를 화면에 표시(응답 없이 끝나지 않도록)
+            traceback.print_exc()
+            out = {"error": f"실행 오류: {type(e).__name__}: {e}"}
+        finally:
+            if path.parent == TMP:
+                path.unlink(missing_ok=True)
+        self._send_json(out)
+
+    def _send_json(self, obj: dict, code: int = 200) -> None:
+        self._send(code, json.dumps(obj, ensure_ascii=False).encode(), "application/json; charset=utf-8")
 
     def log_message(self, fmt, *args):
         sys.stderr.write("[app] " + fmt % args + "\n")
