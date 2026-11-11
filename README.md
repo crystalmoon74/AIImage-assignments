@@ -30,7 +30,7 @@ uv pip install --python .venv-ocr/Scripts/python.exe -r requirements-ocr.txt
 > **환경 이슈(숨기지 않고 기록):** 이 PC는 Windows **스마트 앱 컨트롤**이 켜져 있어, 서명 평판이 없는 일부 DLL 로드를 막습니다.
 > - `paddlepaddle` 의 `libpaddle` DLL → 차단(WinError 4551). **로컬에서 PaddlePaddle 엔진은 실행 불가.**
 > - `pandas` DLL → 차단. 그래서 pandas에 의존하는 Gradio 대신 표준 라이브러리 `http.server` 로 웹 화면을 만들었습니다.
-> - 보안 설정은 끄지 않았습니다. 대신 B는 **같은 PaddleOCR PP-OCRv5 가중치를 ONNX로 변환해 실행하는 RapidOCR** 로 로컬 실행하고, 원본 PaddleOCR로 돌리는 **Colab 노트북**([ocr/paddleocr_colab.ipynb](ocr/paddleocr_colab.ipynb))을 함께 두었습니다(교재: "로컬이나 Colab 중 실행할 곳을 정합시다"). Colab 노트북은 이 PC에서 실행하지 못해 **미실행 상태**입니다.
+> - 보안 설정은 끄지 않았습니다. 대신 B는 **같은 PaddleOCR PP-OCRv5 가중치를 ONNX로 변환해 실행하는 RapidOCR** 로 로컬 실행하고, 원본 PaddleOCR로 돌리는 **Colab 노트북**([ocr/paddleocr_colab.ipynb](ocr/paddleocr_colab.ipynb))을 함께 두었습니다(교재: "로컬이나 Colab 중 실행할 곳을 정합시다"). Colab 노트북은 **2026-11-11 Google Colab(CPU, Python 3.13)에서 전체 실행을 확인**했습니다(B-1 아래 "Colab 실행 확인 결과").
 
 ---
 
@@ -135,6 +135,52 @@ segment 모델은 책상을 `dining table 0.368` 로 찾았습니다. 원본에�
 1. `extract_table_image.py` — 원문 PDF를 내려받아 2쪽(인쇄 22쪽)에서 Table 1 영역(+각주)을 **200 dpi** PNG로 잘라 `input/census-table.png` 에 저장합니다. 교재에 첨부된 이미지 파일은 링크가 없어서, 교재가 밝힌 원문·페이지·dpi 그대로 직접 추출했습니다.
 2. `run_ocr.py` — OCR → 표 조립 → 자동 검증 → 사람 검토 수정 적용 → 결과 저장을 차례로 실행합니다.
 
+#### Colab에서 실행·추가 테스트 — [ocr/paddleocr_colab.ipynb](ocr/paddleocr_colab.ipynb)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/crystalmoon74/AIImage-assignments/blob/main/ocr/paddleocr_colab.ipynb)
+
+배지를 누르고 `런타임 → 모두 실행` 하면 됩니다(CPU 런타임, Google 로그인 필요). 노트북이 이 저장소를 받아 **로컬과 같은 스크립트·같은 고정 버전**으로 실행합니다.
+
+| 부 | 하는 일 | 저장 위치(Colab 안) |
+|---|---|---|
+| 0 | 저장소 clone, `rapidocr==3.10.0`·`onnxruntime==1.31.1` 설치 | – |
+| 1 | `run_ocr.py --out outputs/ocr_colab` 로 과제 B 재현 → 표·합계 검사·검토 기록·document.md 표시, **커밋된 `outputs/ocr/table.csv` 와 같은지 자동 대조** | `outputs/ocr_colab/` |
+| 2 | 테스트 이미지 b1, b2에 `ocr_quick.py` 적용, 확인 필요 칸 목록 | `outputs/ocr_test_colab/` |
+| 3 | **내 이미지 테스트** — 파일 업로드 또는 `IMAGE_URL`, '확인 필요' 점수 기준 슬라이더(`SCORE_REVIEW`) | `outputs/ocr_user/` |
+| 4 | (선택) 원본 PaddleOCR(paddlepaddle) 엔진으로 같은 표 실행 → 사람이 고친 3칸을 RapidOCR과 비교 | `outputs/ocr_paddle/` |
+| 5 | 결과 zip 다운로드 | `ocr_colab_results.zip` |
+
+- 검토 기록(`corrections.json`)은 OCR 원시값이 기록과 같을 때만 적용됩니다. Colab에서 원시값이 달라지면 1부가 **멈추고 어느 칸이 다른지** 알려 줍니다(검토 없이 고치지 않음).
+- 실행 위치는 `manifest.json` 의 `execution_location.where` 에 `Google Colab (CPU)` / `로컬 PC` 로 자동 기록됩니다.
+
+**Colab 실행 확인 결과 (2026-11-11, Colab CPU 런타임, Linux, Python 3.13.18)**
+
+| 부 | 결과 |
+|---|---|
+| 0 | 고정 버전 그대로 설치됨: rapidocr 3.10.0, onnxruntime 1.31.1 (opencv-python-headless 5.0.0.93, numpy 2.4.6) |
+| 1 | 합계 검사 검토 전 3/4 → 검토 후 4/4, 검토 기록 3건 적용, 남은 확인 필요 0. **`table.csv`·`table_raw.csv` 모두 로컬 결과와 완전히 같음(`True`)** — OS·파이썬 버전이 달라도 같은 결과 |
+| 2 | b1, b2 실행·확인 필요 목록 표시 정상 |
+| 3 | 업로드 창 표시 → `Cancel upload` 시 건너뜀 메시지, `IMAGE_URL`(b2 이미지 주소) 입력 시 내려받아 OCR·확인 필요 목록 표시 정상 |
+| 4 | 원본 PaddleOCR(paddlepaddle 3.3.1, paddleocr 3.7.0, PP-OCRv5_server_det + en_PP-OCRv5_mobile_rec) 실행 성공 — 아래 비교 |
+| 5 | zip 생성·다운로드 정상 |
+
+처음 실행에서 4부가 `NotImplementedError: ConvertPirAttribute2RuntimeAttribute not support`(paddlepaddle 3.3.1 CPU의 oneDNN 경로 문제)로 실패해 `enable_mkldnn=False` 로 고쳤습니다. 또 paddleocr 3.7은 `lang='en'` 만 주면 **PP-OCRv6_medium** 모델을 쓰는 것을 출력에서 확인해, 1부와 같은 PP-OCRv5 모델을 이름으로 지정했습니다.
+
+**원본 PaddleOCR vs RapidOCR(1부) — 사람이 고친 3칸**
+
+| 칸 | 정답(원본 대조) | RapidOCR 원시값 | PaddleOCR 원시값 (점수) |
+|---|---|---|---|
+| 표 제목 | Table 1 | `I OIQBE` | `Table l` (0.919) |
+| Philippine Islands 인구 | 7, 635, 426 | `17, 635, 426` | `17, 635, 426` (0.996) |
+| Panama Canal Zone 인구 | 62, 810 | `262, 810` | `262,810` (0.963) |
+
+→ 엔진을 원본으로 바꿔도 **위첨자 각주 번호가 숫자 앞에 붙는 오류는 똑같이** 나왔고 점수도 0.96 이상으로 높습니다. 제목은 원본 엔진이 더 가깝게 읽었지만 `1` 을 `l` 로 읽었습니다. 점수 기준만으로는 숫자 오류를 못 잡고, 합계 검사·원본 대조가 필요하다는 B의 결론이 엔진과 관계없이 유지됩니다.
+- 로컬에서도 같은 옵션으로 추가 테스트할 수 있습니다.
+
+```bash
+.venv-ocr\Scripts\python.exe ocr\ocr_quick.py 내_표_이미지.png --score 0.95 --out outputs\ocr_user
+```
+
 ### B-2. 도구·설정 선택 이유
 
 | 단계(교재의 OCR 네 작업) | 선택 | 이유 |
@@ -192,7 +238,7 @@ OCR은 42개 글자 영역을 찾았고, 표 11행 × 3열로 조립했습니다
 - `Military and naval service abroad` 의 면적 칸은 원본에 **점선만** 있습니다. 0으로 채우지 않고 빈 값(—)으로 두었습니다.
 - 열 제목은 "Population: 1910"이지만 Philippine Islands는 **1903년**, Panama Canal Zone은 **1912년** 값이고, Guam·Samoa는 **추정치**입니다(원본 각주·행 이름). `population_note` 에 남겼습니다.
 - 열 경계·행 군집 허용오차(11px)·제목/각주 경계(y=100/455px)는 이 이미지에 맞춘 규칙이라 다른 표에 그대로 쓸 수 없습니다.
-- 원본 PaddlePaddle 엔진 결과는 **얻지 못했습니다**(로컬 DLL 차단, Colab 노트북 미실행). 로컬 결과는 같은 가중치를 ONNX Runtime으로 실행한 것이라, 후처리 차이로 PaddleOCR 결과와 일부 다를 수 있습니다.
+- 원본 PaddlePaddle 엔진은 로컬에서 실행하지 못했고(DLL 차단), **Colab에서만 실행**했습니다. 비교는 사람이 고친 3칸에 한정했으며, 원본 엔진의 전체 결과로 표를 다시 조립하지는 않았습니다. Colab 실행 결과 파일은 런타임 안에만 있고 저장소에는 커밋하지 않았습니다(노트북 5부에서 zip으로 받을 수 있음).
 
 ---
 
@@ -252,5 +298,5 @@ requirements-*.txt
 |---|---|
 | **실행 가능성** | 0절 환경 설치 명령, A-1·B-1 실행 명령, 버전을 고정한 `requirements-*.txt`, 결과 파일 저장, `manifest.json`(입력 해시·모델 해시·패키지 버전·설정), 실행 결과가 저장된 노트북 |
 | **원본 대조·근거** | A-5 ①~⑤(정답 마스크 IoU, 손 누락 좌표, 임계값 차이), B-4 수정 내역(원본 bbox·확대 이미지·합계 검사), `cells.csv` 값별 위치 |
-| **범위 정직성** | A-6, B-5, 0절 환경 이슈(PaddlePaddle 미실행·Colab 미실행 명시), 점선 칸을 0으로 채우지 않음, 연도가 다른 값 표시 |
+| **범위 정직성** | A-6, B-5, 0절 환경 이슈(로컬 PaddlePaddle 미실행 → Colab에서 실행·비교, Colab 4부 오류와 수정 기록), 점선 칸을 0으로 채우지 않음, 연도가 다른 값 표시 |
 | **설명** | 0절 실행 위치, A-2·B-2 설정 선택 이유, "처음 예상과 실제 결과" |
